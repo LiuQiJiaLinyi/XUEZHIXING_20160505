@@ -8,7 +8,7 @@
 
 #import "ColloctionDetailVC.h"
 
-@interface ColloctionDetailVC ()
+@interface ColloctionDetailVC ()<UISearchBarDelegate>
 {
     UILabel * topLabel;
     UIImageView * searchImage;
@@ -47,9 +47,17 @@
 {
     collectionDetailsearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(80, 9, [UIScreen mainScreen].bounds.size.width/3*2, 40)];
     collectionDetailsearchBar.backgroundColor = [UIColor whiteColor];
+    collectionDetailsearchBar.delegate = self;
+    
     
     [self.view addSubview:collectionDetailsearchBar];
     
+}
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    
+    self.view.frame = CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    return YES;
 }
 
 - (void)backMainView
